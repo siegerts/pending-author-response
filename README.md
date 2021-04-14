@@ -19,7 +19,7 @@ The labels must exist in the repo in order for the action to add them to an issu
 You can use the action by referencing the v1 branch:
 
 ```yaml
-name: pending-response
+name: pending-author-response
 on:
   issue_comment:
     types: [created]
@@ -28,7 +28,7 @@ jobs:
   issue_commented:
     runs-on: ubuntu-latest
     steps:
-      - uses: siegerts/pending-response@v1
+      - uses: siegerts/pending-author-response@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pending-response-label: pending-response
@@ -37,7 +37,7 @@ jobs:
 ### Adding an `actionable-label`
 
 ```yaml
-name: pending-response
+name: pending-author-response
 on:
   issue_comment:
     types: [created]
@@ -46,7 +46,7 @@ jobs:
   issue_commented:
     runs-on: ubuntu-latest
     steps:
-      - uses: siegerts/pending-response@v1
+      - uses: siegerts/pending-author-response@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pending-response-label: pending-response
@@ -58,7 +58,7 @@ jobs:
 Note: `contains(github.event.issue.labels.*.name, 'pending-response')` matches the label used in `pending-response-label` value.
 
 ```diff
-  name: pending-response
+  name: pending-author-response
   on:
     issue_comment:
       types: [created]
@@ -68,7 +68,7 @@ Note: `contains(github.event.issue.labels.*.name, 'pending-response')` matches t
 +     if: ${{ !github.event.issue.pull_request  && contains(github.event.issue.labels.*.name, 'pending-response') }}
       runs-on: ubuntu-latest
       steps:
-        - uses: siegerts/pending-response@v1
+        - uses: siegerts/pending-author-response@v1
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             pending-response-label: pending-response
