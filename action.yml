@@ -1,13 +1,21 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: "Pending Author Response Follow Up"
+description: |
+  "Add and remove `pending-response` issue labels based comments by the original issue author."
+author: siegerts
+branding:
+  color: blue
+  icon: code
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
     required: true
-    default: '1000'
-outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  pending-response-label:
+    description: Label to remove indicating that a response is required for further action
+    required: true
+  actionable-label:
+    description: Label added to highlight that a user has responded and a follow-up is required
+
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"
